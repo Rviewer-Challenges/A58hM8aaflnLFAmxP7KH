@@ -11,6 +11,9 @@ const cardImages = [
     { "src": "/img/spider.jpg", matched: false },
     { "src": "/img/witch.jpg", matched: false },
     { "src": "/img/zombie.jpg", matched: false },
+    { "src": "/img/wizard.jpg", matched: false },
+    { "src": "/img/candies.jpg", matched: false },
+    { "src": "/img/vampire.jpg", matched: false },
    
   ];
   

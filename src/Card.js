@@ -11,12 +11,10 @@ function Card({ card, handleCardClick, flipped }) {
 
   // Determine the image to show based on the flipped state
   const imageUrl = card.isFlipped ? card.src : process.env.PUBLIC_URL + '/img/choose.jpg';
-
-  // Conditional styling for the card, if it's matched or not
   const cardStyle = card.matched ? { borderColor: 'green' } : {};
 
   return (
-    <div className={`card ${card.isFlipped || card.matched ? 'flipped' : ''}`} onClick={handleClick}>
+    <div className={`card ${card.isFlipped || card.matched ? 'flipped' : ''}`} onClick={handleClick} data-testid="card">
       <img src={card.isFlipped || card.matched ? card.src : process.env.PUBLIC_URL + '/img/choose.jpg'} alt="card" />
     </div>
   );

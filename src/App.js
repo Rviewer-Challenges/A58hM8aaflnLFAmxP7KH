@@ -7,7 +7,7 @@ import GameBoard from './GameBoard';
 import cardImages from './cardImages'; 
 import Modal from 'react-modal'; 
 
-Modal.setAppElement('#root');
+Modal.setAppElement = () => {};
 
 
 function App() {
@@ -129,7 +129,13 @@ const initializeGame = (selectedDifficulty) => {
   return (
     <div className="app">
       {!isGameStarted ? (
-        <DifficultySelector onSelectDifficulty={handleDifficultyChange} />
+        <>
+          <header style={{ textAlign: 'center' }}>
+            <h1>Memory Game</h1>
+            <p>Test your memory by matching the cards before time runs out!</p>
+          </header>
+          <DifficultySelector onSelectDifficulty={handleDifficultyChange} />
+        </>
       ) : (
         <>
           <Timer timeLeft={timeLeft} />
