@@ -1,69 +1,70 @@
-# Memory Game
+# Getting Started with Create React App
 
-Who hasn't played card games at some point? From a very young age to a beer night with friends, right?
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Well, for this Challenge you will have to choose your favourite theme and recreate
-the [famous game](https://en.wikipedia.org/wiki/Concentration_(card_game)).
+## Available Scripts
 
-![Brais Moure Challenge card](moure_memory-game.png)
+In the project directory, you can run:
 
-> This is a challenge created by [MoureDev](https://www.twitch.tv/mouredev). He will review and give feedback to some
-> proposed solutions from the community in one of his Twitch livestreams 😻 
+### `npm start`
 
-**Surprise us! 😉**
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## How it works?
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-The requirements for the game are pretty simple. First, you have to choose whatever theme you want to, like
-Pokémon, Star Wars or even Peppa Pig!
+### `npm test`
 
-The dynamics of the game will consist of presenting a board with a series of face-down cards and revealing all the pairs
-before the time is up. The user will tap on each card to turn it over and, if two of them match when they are uncovered,
-they will be turned face up. If not, they will be hidden again.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-**The game is won if all pairs are uncovered within the time limit.**
+### `npm run build`
 
-So, the game will have an initial screen to select one of the three difficulties and 1 minute to solve each board:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-* Easy: 4x4 board
-* Medium: 4x6 board (or 6x4 depending on the screen)
-* Difficult: 5x6 board (or 6x5 depending on screen)
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-The application will have a main game screen that contains the following elements:
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-* Game board. The board where the user will play and see the cards.
-* Move counter. Every time 2 cards are turned over it will increase by 1, whether you hit or not.
-* Time counter. A 1-min countdown to reveal all pairs!
-* Remaining pairs counter.
-* A button to return to the level selection screen.
+### `npm run eject`
 
-## Technical requirements
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-* Create a **clean**, **maintainable** and **well-designed** code. We expect to see a good and clear architecture that
-  allows to add or modify the solution without so much troubles.
-* **Test** your code until you are comfortable with it. We don't expect a 100% of Code Coverage but some tests that
-  helps to have a more stable and confident base code.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-To understand how you take decisions during the implementation, **please write a COMMENTS.md** file explaining some of
-the most important parts of the application. You would also be able to defend your code through
-[Rviewer](https://rviewer.io), once you submit your solution.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
----
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## How to submit your solution
+## Learn More
 
-* Push your code to the `devel` branch - we encourage you to commit regularly to show your thinking process was.
-* **Create a new Pull Request** to `main` branch & **merge it**.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Once merged you **won't be able to change or add** anything to your solution, so double-check that everything is as you
-expected!
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Remember that **there is no countdown**, so take your time and implement a solution that you are proud!
+### Code Splitting
 
---- 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-<p align="center">
-  If you have any feedback or problem, <a href="mailto:help@rviewer.io">let us know!</a> 🤘
-  <br><br>
-  Made with ❤️ by <a href="https://rviewer.io">Rviewer</a>
-</p>
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

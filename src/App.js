@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
-import Timer from './Timer'; // This is a new component you will need to create
-import MoveCounter from './MoveCounter'; // This is a new component you will need to create
-import DifficultySelector from './DifficultySelector'; // This is a new component you will need to create
-import GameBoard from './GameBoard'; // This is a new component you will need to create
-import cardImages from './cardImages'; // Assume you export the images from a separate file
+import Timer from './Timer'; 
+import MoveCounter from './MoveCounter'; 
+import DifficultySelector from './DifficultySelector'; 
+import GameBoard from './GameBoard'; 
+import cardImages from './cardImages'; 
+import Modal from 'react-modal'; 
+
+Modal.setAppElement('#root');
+
 
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
-  const [difficulty, setDifficulty] = useState('easy'); // New state for difficulty
-  const [timeLeft, setTimeLeft] = useState(60); // New state for the timer
-  const [isGameStarted, setIsGameStarted] = useState(false); // New state to track if the game has started
-  const [openCards, setOpenCards] = useState([]);  // Add this line to your existing state declarations
+  const [difficulty, setDifficulty] = useState('easy'); 
+  const [timeLeft, setTimeLeft] = useState(60); 
+  const [isGameStarted, setIsGameStarted] = useState(false); 
+  const [openCards, setOpenCards] = useState([]);  
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showFailModal, setShowFailModal] = useState(false);
+  const [startTime, setStartTime] = useState(0); 
+  const [timeTaken, setTimeTaken] = useState(0);
+
 
 const initializeGame = (selectedDifficulty) => {
   // Calculate the number of unique images needed based on difficulty level
@@ -36,26 +45,34 @@ const initializeGame = (selectedDifficulty) => {
   setTurns(0);
   setTimeLeft(60);
   setIsGameStarted(true);
+  setStartTime(Date.now());
 };
 
 
-// In the useEffect for the timer...
   useEffect(() => {
-    // Existing timer logic...
-
-    // Check for game end when time runs out
-    if (timeLeft === 0) {
-      // Determine if all cards have been matched
-      const allMatched = cards.every(card => card.matched);
-      if (allMatched) {
-        // Handle win
-        console.log("You've won!");
+    const timer = setInterval(() => {
+      if (timeLeft === 0 && isGameStarted) { 
+        clearInterval(timer);
+        setShowFailModal(true);
       } else {
-        // Handle loss
-        console.log("Time's up! Try again.");
+        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
       }
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [timeLeft, isGameStarted]); 
+
+  useEffect(() => {
+    const allMatched = cards.every((card) => card.matched);
+    if (allMatched && isGameStarted) { 
+      const endTime = Date.now();
+      const timeTakenInSeconds = Math.floor((endTime - startTime) / 1000); 
+      setTimeTaken(timeTakenInSeconds); 
+      setShowSuccessModal(true);
     }
-  }, [timeLeft, cards]);
+  }, [cards, startTime, isGameStarted]); 
 
   const handleCardClick = (selectedCard) => {
     // If two cards are already open, do not allow more to be flipped until they are reset
@@ -109,7 +126,6 @@ const initializeGame = (selectedDifficulty) => {
     initializeGame(selectedDifficulty);
   };
 
-  // UI rendering
   return (
     <div className="app">
       {!isGameStarted ? (
@@ -118,7 +134,7 @@ const initializeGame = (selectedDifficulty) => {
         <>
           <Timer timeLeft={timeLeft} />
           <MoveCounter turns={turns} />
-          <GameBoard 
+          <GameBoard
             cards={cards}
             onCardClick={handleCardClick}
             difficulty={difficulty}
@@ -126,6 +142,28 @@ const initializeGame = (selectedDifficulty) => {
           <button onClick={() => setIsGameStarted(false)}>Back to selection</button>
         </>
       )}
+
+      {/* Success Modal */}
+      <Modal
+        isOpen={showSuccessModal}
+        onRequestClose={() => setShowSuccessModal(false)}
+        contentLabel="Success Modal"
+      >
+        <h2>Congratulations!</h2>
+        <p>You've found all the images in {timeTaken} seconds.</p>
+        <button onClick={() => setShowSuccessModal(false)}>Close</button>
+      </Modal>
+
+      {/* Fail Modal */}
+      <Modal
+        isOpen={showFailModal}
+        onRequestClose={() => setShowFailModal(false)}
+        contentLabel="Fail Modal"
+      >
+        <h2>Time's Up!</h2>
+        <p>Sorry, time has passed. Try again.</p>
+        <button onClick={() => setShowFailModal(false)}>Close</button>
+      </Modal>
     </div>
   );
 }
